@@ -15,7 +15,7 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 .sync-bar{padding:6px 20px;font-size:11px;font-weight:600;text-align:center}
 .sync-bar.loading{background:#1a2a1a;color:#4ade80}
 .sync-bar.error{background:#2a1a1a;color:#ef4444}
-.sync-bar.ok{background:#0c0c0c;color:#0c0c0c}
+.sync-bar.ok{background:#0c0c0c;color:#0c0c0c;height:0;padding:0;overflow:hidden}
 .mbar{display:flex;padding:10px 20px;border-bottom:1px solid #2a2a2a}
 .mbtn{flex:1;padding:10px;border:1px solid #2a2a2a;background:transparent;color:#b0b0b0;font-size:13px;font-weight:600;text-transform:uppercase;cursor:pointer;font-family:inherit}
 .mbtn:first-child{border-radius:8px 0 0 8px}.mbtn:last-child{border-radius:0 8px 8px 0}
@@ -41,24 +41,25 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 .sdone{font-size:11px;color:#888;font-weight:600}
 .em{display:flex;gap:14px;font-size:13px;color:#d4d4d4;flex-wrap:wrap}.em .dt{color:#555}
 .eno{font-size:13px;color:#b0b0b0;margin:8px 0 0}
-.srow{display:flex;align-items:center;gap:6px;padding:8px 8px;background:#1a1a1a;border-radius:8px;border:1px solid #2a2a2a;margin-top:6px;transition:all .2s;flex-wrap:wrap}
-.srow:first-of-type{margin-top:12px}
-.srow.done{background:#111;border-color:#333;opacity:.5}
-.slbl{font-size:12px;color:#d4d4d4;font-weight:700;min-width:34px}.srow.done .slbl{color:#666}
-.wctrl{display:flex;align-items:center;gap:0}
-.wbtn{width:32px;height:32px;border-radius:6px;border:1px solid #444;background:#222;color:#fff;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;user-select:none}
-.wbtn:active{background:#333;transform:scale(.95)}
-.srow.done .wbtn{opacity:.4;pointer-events:none}
-.wval{min-width:50px;text-align:center;font-size:13px;font-weight:700;color:var(--ac,#E85D3A)}.srow.done .wval{color:#666}
-.rctrl{display:flex;align-items:center;gap:0}
-.rbtn{width:28px;height:28px;border-radius:6px;border:1px solid #3a3a3a;background:#1a1a1a;color:#d4d4d4;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;user-select:none}
-.rbtn:active{background:#2a2a2a;transform:scale(.95)}
-.srow.done .rbtn{opacity:.4;pointer-events:none}
-.rval{min-width:32px;text-align:center;font-size:13px;font-weight:600;color:#d4d4d4}.srow.done .rval{color:#666}
-.rlbl{font-size:10px;color:#888;margin-right:2px}
-.sreps{flex:1;font-size:13px;color:#888;text-align:center}
+.scard{background:#1a1a1a;border-radius:10px;border:1px solid #2a2a2a;padding:10px 12px;margin-top:8px;transition:all .2s}
+.scard:first-of-type{margin-top:12px}
+.scard.done{background:#111;border-color:#333;opacity:.5}
+.scard-top{display:flex;align-items:center;margin-bottom:8px}
+.slbl{font-size:12px;color:#d4d4d4;font-weight:700;min-width:38px}.scard.done .slbl{color:#666}
+.slast{font-size:10px;color:#555;margin-left:auto;margin-right:8px}
 .ck{width:28px;height:28px;border-radius:6px;border:2px solid #555;background:transparent;color:#555;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .ck.on{border:none;background:var(--ac,#E85D3A);color:#fff}
+.srow-line{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid #252525}
+.srow-label{font-size:10px;color:#888;min-width:42px;text-transform:uppercase;font-weight:600}
+.wbtn{width:36px;height:36px;border-radius:8px;border:1px solid #444;background:#222;color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;user-select:none}
+.wbtn:active{background:#333;transform:scale(.95)}
+.scard.done .wbtn{opacity:.4;pointer-events:none}
+.wval{flex:1;text-align:center;font-size:16px;font-weight:700;color:var(--ac,#E85D3A)}.scard.done .wval{color:#666}
+.rbtn{width:36px;height:36px;border-radius:8px;border:1px solid #3a3a3a;background:#151515;color:#d4d4d4;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;user-select:none}
+.rbtn:active{background:#2a2a2a;transform:scale(.95)}
+.scard.done .rbtn{opacity:.4;pointer-events:none}
+.rval{flex:1;text-align:center;font-size:16px;font-weight:600;color:#d4d4d4}.scard.done .rval{color:#666}
+.sreps-only{font-size:13px;color:#888;padding:6px 0;border-top:1px solid #252525;text-align:center}
 .str-section{padding:16px 20px;border-bottom:1px solid #2a2a2a}
 .str-title{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .str-row{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#1a1a1a;border-radius:8px;border:1px solid #2a2a2a;margin-bottom:6px}
@@ -70,8 +71,7 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 .str-add:active{background:#1a1a1a}
 .prg{padding:16px 20px}
 .prg-h{display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;color:#b0b0b0;text-transform:uppercase;font-weight:600}
-.prg-t{height:4px;background:#2a2a2a;border-radius:2px;overflow:hidden}
-.prg-f{height:100%;border-radius:2px;transition:width .4s}
+.prg-t{height:4px;background:#2a2a2a;border-radius:2px;overflow:hidden}.prg-f{height:100%;border-radius:2px;transition:width .4s}
 .logs{padding:12px 20px}
 .lbtn{width:100%;padding:16px;border-radius:12px;border:none;font-size:14px;font-weight:700;text-transform:uppercase;cursor:pointer;font-family:inherit}
 .lbtn.rdy{background:#4ade80;color:#000}.lbtn.rdy:active{transform:scale(.98)}
@@ -84,6 +84,23 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 .ngrd .nv{color:#E85D3A;font-weight:600;font-size:14px}.ngrd .nv2{color:#d4d4d4;font-weight:500;font-size:14px}
 .ftr{padding:16px 20px 32px;text-align:center;font-size:13px;color:#b0b0b0;border-top:1px solid #2a2a2a}
 .vw{display:none}.vw.on{display:block}
+/* Body Weight */
+.bw-section{padding:20px 0;border-bottom:1px solid #2a2a2a}
+.bw-title{font-size:12px;color:#b0b0b0;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:12px}
+.bw-card{background:#171717;border:1px solid #2a2a2a;border-radius:12px;padding:16px}
+.bw-stats{display:flex;gap:0;margin-bottom:14px}
+.bw-stat{flex:1;text-align:center}
+.bw-stat-label{font-size:10px;color:#888;text-transform:uppercase;font-weight:600;margin-bottom:2px}
+.bw-stat-val{font-size:22px;font-weight:700;color:#fff}
+.bw-stat-sub{font-size:11px;color:#888;margin-top:1px}
+.bw-change-pos{color:#4ade80}.bw-change-neg{color:#ef4444}.bw-change-zero{color:#888}
+.bw-input-row{display:flex;gap:8px;align-items:center}
+.bw-input{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:10px 12px;font-size:15px;color:#fff;flex:1;font-family:inherit;text-align:center;font-weight:600}
+.bw-input::placeholder{color:#555;font-weight:400}
+.bw-log-btn{padding:10px 20px;border-radius:8px;border:1px solid #4ade80;background:transparent;color:#4ade80;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-transform:uppercase;white-space:nowrap}
+.bw-log-btn:active{background:#4ade80;color:#000}
+.bw-msg{font-size:12px;margin-top:6px;min-height:16px;font-weight:600}
+/* Modals */
 .modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
 .modal.on{display:flex}
 .modal-rest{background:rgba(0,0,0,.92)}.modal-hold{background:rgba(5,20,40,.95)}
@@ -96,7 +113,7 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 .modal-bar-fill{height:100%;border-radius:2px;transition:width 1s linear}
 .modal-stop{width:200px;padding:16px;border-radius:12px;border:2px solid #ef4444;background:transparent;color:#ef4444;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer;font-family:inherit}
 .modal-stop:active{background:#ef4444;color:#fff;transform:scale(.97)}
-.hwrap{padding:0 20px 24px}.hemp{text-align:center;padding:60px 20px;color:#b0b0b0}
+.hwrap{padding:0 20px 24px}.hemp{text-align:center;padding:40px 20px;color:#b0b0b0}
 .hc{background:#171717;border:1px solid #2a2a2a;border-radius:10px;padding:14px 16px;margin-top:10px}
 .hch{display:flex;justify-content:space-between;margin-bottom:8px}.hcd{font-size:14px;font-weight:700}.hcdt{font-size:12px;color:#b0b0b0}
 .hce{font-size:13px;color:#d4d4d4;padding:4px 0;display:flex;justify-content:space-between}.hce .hw{color:#fff;font-weight:600}
@@ -117,23 +134,11 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 <body style="background-color:#0c0c0c !important;">
 <div class="app" id="app">
 <div class="hdr"><h1>Your Routine</h1><div class="tg">CHEST/TRI · BACK/BI · LEGS/SHOULDERS · BACK SAFE</div><p class="sb">Pick your session · Train when you can · Stay in rotation</p></div>
-<div class="sync-bar ok" id="syncBar">.</div>
+<div class="sync-bar ok" id="syncBar"></div>
 <div class="mbar"><button class="mbtn on" id="bW" onclick="md('w')">Workout</button><button class="mbtn" id="bH" onclick="md('h')">History</button></div>
-<div class="vw on" id="vW">
-  <div class="pkr" id="pkr"></div><div class="dhdr" id="dhdr"></div><div id="exL"></div><div id="strSection"></div>
-  <div class="prg" id="prg"></div>
-  <div class="logs"><button class="lbtn off" id="lBtn" onclick="doLog()">Complete sets to log</button></div>
-  <div class="nuts">
-    <button class="ntgl" onclick="tgNut()"><span>Daily Nutrition Targets</span><span id="narr" style="transition:transform .25s;display:inline-block">&#9660;</span></button>
-    <div class="ngrd" id="ngrd">
-      <div><div class="nl">Calories</div><div class="nv">1,800 - 2,000/day</div></div>
-      <div><div class="nl">Protein</div><div class="nv">140-160g/day</div></div>
-      <div><div class="nl">Meals</div><div class="nv2">3 meals + 1 snack</div></div>
-      <div><div class="nl">Water</div><div class="nv2">100oz+ daily</div></div>
-    </div>
-  </div>
-  <div class="ftr">Walk 30-45 min daily · Drinks max 2-3 weekends · Pre-plan munchie snacks</div>
-</div>
+<div class="vw on" id="vW"><div class="pkr" id="pkr"></div><div class="dhdr" id="dhdr"></div><div id="exL"></div><div id="strSection"></div><div class="prg" id="prg"></div><div class="logs"><button class="lbtn off" id="lBtn" onclick="doLog()">Complete sets to log</button></div>
+<div class="nuts"><button class="ntgl" onclick="tgNut()"><span>Daily Nutrition Targets</span><span id="narr" style="transition:transform .25s;display:inline-block">&#9660;</span></button><div class="ngrd" id="ngrd"><div><div class="nl">Calories</div><div class="nv">1,800 - 2,000/day</div></div><div><div class="nl">Protein</div><div class="nv">140-160g/day</div></div><div><div class="nl">Meals</div><div class="nv2">3 meals + 1 snack</div></div><div><div class="nl">Water</div><div class="nv2">100oz+ daily</div></div></div></div>
+<div class="ftr">Walk 30-45 min daily · Drinks max 2-3 weekends · Pre-plan munchie snacks</div></div>
 <div class="vw" id="vH"><div class="hwrap" id="hWrap"></div></div>
 </div>
 <div class="modal modal-rest" id="restModal"><div class="modal-label" style="color:#b0b0b0">Rest</div><div class="modal-exname" id="restEx"></div><div class="modal-circle" style="border:4px solid #2a2a2a"><div class="modal-digits" id="restDigits" style="color:#fff">0</div></div><div class="modal-sub" style="color:#888" id="restSub"></div><div class="modal-bar" style="background:#2a2a2a"><div class="modal-bar-fill" id="restFill"></div></div><button class="modal-stop" onclick="stopRest()">Stop</button></div>
@@ -143,82 +148,58 @@ html,body{background-color:#0c0c0c !important;color:#f5f5f5;font-family:-apple-s
 var SS=[
 {id:"chest-tri",label:"Chest & Triceps",focus:"Push day",color:"#E85D3A",exercises:[
 {name:"Elliptical / Walk",sets:1,reps:0,base:0,step:0,min:0,max:0,rest:0,notes:"Warmup cardio. Get heart rate up.",badge:"wu",repLabel:"10 min"},
-{name:"DB Bench Press",sets:3,reps:10,base:35,step:5,min:5,max:150,rest:90,notes:"Keep feet flat. Don't over-arch lower back."},
-{name:"Incline DB Press",sets:3,reps:10,base:30,step:5,min:5,max:150,rest:90,notes:"Bench at 30 degrees. Upper chest."},
-{name:"Machine Chest Fly",sets:3,reps:12,base:50,step:5,min:10,max:200,rest:60,notes:"Great stretch and squeeze."},
+{name:"DB Bench Press",sets:3,reps:10,base:35,step:2.5,min:5,max:150,rest:90,notes:"Keep feet flat. Don't over-arch lower back."},
+{name:"Incline DB Press",sets:3,reps:10,base:30,step:2.5,min:5,max:150,rest:90,notes:"Bench at 30 degrees. Upper chest."},
+{name:"Machine Chest Fly",sets:3,reps:12,base:50,step:2.5,min:10,max:200,rest:60,notes:"Great stretch and squeeze."},
 {name:"Cable Crossover",sets:3,reps:12,base:20,step:2.5,min:5,max:100,rest:60,notes:"Slight forward lean. Squeeze at center."},
-{name:"OH Tricep Cable Ext",sets:3,reps:12,base:30,step:5,min:5,max:120,rest:45,notes:"Face away from cable. Elbows tight."},
+{name:"OH Tricep Cable Ext",sets:3,reps:12,base:30,step:2.5,min:5,max:120,rest:45,notes:"Face away from cable. Elbows tight."},
 {name:"Rope Pushdown",sets:3,reps:12,base:37.5,step:2.5,min:10,max:120,rest:45,notes:"Spread rope at bottom. Elbows pinned."},
 {name:"DB Kickback",sets:3,reps:12,base:15,step:2.5,min:5,max:60,rest:45,notes:"Lean forward, keep upper arm still."}]},
 {id:"back-bi",label:"Back & Biceps",focus:"Pull day",color:"#2E86AB",exercises:[
 {name:"Elliptical / Walk",sets:1,reps:0,base:0,step:0,min:0,max:0,rest:0,notes:"Warmup cardio. Get heart rate up.",badge:"wu",repLabel:"10 min"},
-{name:"Lat Pulldown",sets:3,reps:10,base:100,step:5,min:20,max:250,rest:60,notes:"Controlled. No swinging."},
-{name:"Seated Cable Row",sets:3,reps:12,base:80,step:5,min:20,max:250,rest:60,notes:"Squeeze shoulder blades."},
-{name:"Chest Supported DB Row",sets:3,reps:10,base:30,step:5,min:5,max:120,rest:60,notes:"Chest on pad. Zero back stress."},
+{name:"Lat Pulldown",sets:3,reps:10,base:100,step:2.5,min:20,max:250,rest:60,notes:"Controlled. No swinging."},
+{name:"Seated Cable Row",sets:3,reps:12,base:80,step:2.5,min:20,max:250,rest:60,notes:"Squeeze shoulder blades."},
+{name:"Chest Supported DB Row",sets:3,reps:10,base:30,step:2.5,min:5,max:120,rest:60,notes:"Chest on pad. Zero back stress."},
 {name:"Cable Face Pull",sets:3,reps:15,base:27.5,step:2.5,min:5,max:80,rest:45,notes:"Great for posture. Elbows high."},
 {name:"DB Curl",sets:3,reps:12,base:22.5,step:2.5,min:5,max:80,rest:45,notes:"Stand tall, no swinging."},
 {name:"Hammer Curl",sets:3,reps:12,base:22.5,step:2.5,min:5,max:80,rest:45,notes:"Palms facing. Arm thickness."},
-{name:"Cable Curl",sets:3,reps:12,base:30,step:5,min:5,max:100,rest:45,notes:"Constant tension. Elbows at sides."}]},
+{name:"Cable Curl",sets:3,reps:12,base:30,step:2.5,min:5,max:100,rest:45,notes:"Constant tension. Elbows at sides."}]},
 {id:"legs-shoulders",label:"Legs & Shoulders",focus:"Lower + delts",color:"#8B5CF6",exercises:[
 {name:"Elliptical / Walk",sets:1,reps:0,base:0,step:0,min:0,max:0,rest:0,notes:"Warmup cardio. Get heart rate up.",badge:"wu",repLabel:"10 min"},
-{name:"Goblet Squat",sets:3,reps:12,base:35,step:5,min:0,max:120,rest:90,notes:"DB at chest. Safer than barbell squats."},
-{name:"Leg Press",sets:3,reps:12,base:140,step:10,min:20,max:500,rest:90,notes:"Don't let lower back round."},
-{name:"Hip Thrust",sets:3,reps:12,base:95,step:10,min:0,max:400,rest:90,notes:"Back on bench, drive through heels."},
-{name:"Leg Curl",sets:3,reps:12,base:50,step:5,min:10,max:200,rest:60,notes:"Control the negative."},
-{name:"Leg Extension",sets:3,reps:15,base:50,step:5,min:10,max:200,rest:60,notes:"Squeeze quads. Don't lock out."},
-{name:"Seated OH DB Press",sets:3,reps:10,base:25,step:5,min:5,max:100,rest:90,notes:"Back support. Don't lean back."},
+{name:"Goblet Squat",sets:3,reps:12,base:35,step:2.5,min:0,max:120,rest:90,notes:"DB at chest. Safer than barbell squats."},
+{name:"Leg Press",sets:3,reps:12,base:140,step:2.5,min:20,max:500,rest:90,notes:"Don't let lower back round."},
+{name:"Hip Thrust",sets:3,reps:12,base:95,step:2.5,min:0,max:400,rest:90,notes:"Back on bench, drive through heels."},
+{name:"Leg Curl",sets:3,reps:12,base:50,step:2.5,min:10,max:200,rest:60,notes:"Control the negative."},
+{name:"Leg Extension",sets:3,reps:15,base:50,step:2.5,min:10,max:200,rest:60,notes:"Squeeze quads. Don't lock out."},
+{name:"Seated OH DB Press",sets:3,reps:10,base:25,step:2.5,min:5,max:100,rest:90,notes:"Back support. Don't lean back."},
 {name:"Cable Lat Raise",sets:3,reps:15,base:12.5,step:2.5,min:5,max:50,rest:45,notes:"Light and controlled."},
-{name:"Rear Delt Fly",sets:3,reps:15,base:40,step:5,min:10,max:150,rest:45,notes:"Squeeze shoulder blades."}]},
+{name:"Rear Delt Fly",sets:3,reps:15,base:40,step:2.5,min:10,max:150,rest:45,notes:"Squeeze shoulder blades."}]},
 {id:"cardio",label:"Cardio Day",focus:"Fat burn + recovery",color:"#6B7B8D",exercises:[
 {name:"Elliptical / Walk",sets:1,reps:0,base:0,step:0,min:0,max:0,rest:0,notes:"Steady state. Conversational pace.",badge:"cd",repLabel:"28 min"},
 {name:"Dead Bug",sets:3,reps:10,base:0,step:0,min:0,max:0,rest:45,notes:"Lower back pressed into floor."},
 {name:"Pallof Press",sets:3,reps:10,base:15,step:2.5,min:5,max:60,rest:45,notes:"Anti-rotation. Best core for bad backs."},
 {name:"Bird Dog",sets:3,reps:8,base:0,step:0,min:0,max:0,rest:45,notes:"Hold 2s at top. Back stability."}]}
 ];
-var HOLD_TARGET=30;
-var act=0,mode="w",setD={},wts={},reps={},strs={},scnt={},cloudHist=[];
+var HOLD_TARGET=30,WH_KEY="wk_webhook_url";
+var act=0,mode="w",setD={},wts={},rps={},strs={},scnt={},cloudHist=[],lastKnown={},bodyWts=[];
 var restId=null,restTot=0,restLeft=0,holdId=null,holdEl=0;
-var WH_KEY="wk_webhook_url";
 
-function initWR(){for(var si=0;si<SS.length;si++)for(var ei=0;ei<SS[si].exercises.length;ei++)for(var sti=0;sti<SS[si].exercises[ei].sets;sti++){var k=si+"-"+ei+"-"+sti;if(wts[k]===undefined)wts[k]=SS[si].exercises[ei].base;if(reps[k]===undefined)reps[k]=SS[si].exercises[ei].reps;}
+function initWR(){for(var si=0;si<SS.length;si++)for(var ei=0;ei<SS[si].exercises.length;ei++)for(var sti=0;sti<SS[si].exercises[ei].sets;sti++){var k=si+"-"+ei+"-"+sti;if(wts[k]===undefined)wts[k]=SS[si].exercises[ei].base;if(rps[k]===undefined)rps[k]=SS[si].exercises[ei].reps;}
 for(var i=0;i<SS.length;i++){if(!strs[i])strs[i]=[1];if(!scnt[i])scnt[i]=1;}}
-
-function svLocal(){try{localStorage.setItem("wk_local",JSON.stringify({sd:setD,w:wts,r:reps,a:act,str:strs,sc:scnt}));}catch(e){}}
-function ldLocal(){try{var d=JSON.parse(localStorage.getItem("wk_local")||"{}");if(d.sd)setD=d.sd;if(d.w)for(var k in d.w)wts[k]=d.w[k];if(d.r)for(var k2 in d.r)reps[k2]=d.r[k2];if(d.a!==undefined)act=d.a;if(d.str)strs=d.str;if(d.sc)scnt=d.sc;}catch(e){}}
+function svLocal(){try{localStorage.setItem("wk_local",JSON.stringify({sd:setD,w:wts,r:rps,a:act,str:strs,sc:scnt}));}catch(e){}}
+function ldLocal(){try{var d=JSON.parse(localStorage.getItem("wk_local")||"{}");if(d.sd)setD=d.sd;if(d.w)for(var k in d.w)wts[k]=d.w[k];if(d.r)for(var k2 in d.r)rps[k2]=d.r[k2];if(d.a!==undefined)act=d.a;if(d.str)strs=d.str;if(d.sc)scnt=d.sc;}catch(e){}}
 function getWh(){return localStorage.getItem(WH_KEY)||"";}
-function setWh(u){localStorage.setItem(WH_KEY,u);}
+function setWhUrl(u){localStorage.setItem(WH_KEY,u);}
 
-// Fetch history from Google Sheets
-async function fetchHistory(){
-  var url=getWh();if(!url)return;
-  var sb=document.getElementById("syncBar");
-  sb.className="sync-bar loading";sb.textContent="Syncing...";
-  try{
-    var r=await fetch(url);var d=await r.json();
-    if(d.status==="ok"&&d.history){
-      cloudHist=groupHistory(d.history);
-      sb.className="sync-bar ok";sb.textContent=".";
-    }else{sb.className="sync-bar error";sb.textContent="Sync error";setTimeout(function(){sb.className="sync-bar ok";sb.textContent=".";},3000);}
-  }catch(e){sb.className="sync-bar error";sb.textContent="Offline - using cache";setTimeout(function(){sb.className="sync-bar ok";sb.textContent=".";},3000);}
-}
+function buildLastKnown(){lastKnown={};for(var i=cloudHist.length-1;i>=0;i--){var ch=cloudHist[i];for(var j=0;j<ch.ex.length;j++){var x=ch.ex[j];if(lastKnown[x.n])continue;var sd2=[];for(var s=0;s<x.sets.length;s++)sd2.push({w:x.sets[s].w,reps:x.sets[s].reps});lastKnown[x.n]={sets:sd2,date:ch.date};}}}
+function applyLastKnown(){for(var si=0;si<SS.length;si++)for(var ei=0;ei<SS[si].exercises.length;ei++){var ex=SS[si].exercises[ei],lk=lastKnown[ex.name];if(!lk)continue;for(var sti=0;sti<ex.sets;sti++){var k=si+"-"+ei+"-"+sti;if(!setD[k]&&lk.sets[sti]){if(lk.sets[sti].w>0)wts[k]=lk.sets[sti].w;var r=parseInt(lk.sets[sti].reps);if(!isNaN(r)&&r>0)rps[k]=r;}}}}
 
-function groupHistory(rows){
-  var sessions={};
-  rows.forEach(function(r){
-    var key=r.date+"|"+r.session+"|"+r.loggedAt;
-    if(!sessions[key])sessions[key]={date:r.date,sl:r.session,ex:{},ts:r.loggedAt};
-    var exKey=r.exercise;
-    if(!sessions[key].ex[exKey])sessions[key].ex[exKey]={n:exKey,sets:[]};
-    sessions[key].ex[exKey].sets.push({set:r.set,reps:r.reps,w:r.weight,u:r.unit,c:r.completed});
-  });
-  var result=[];
-  Object.keys(sessions).sort().forEach(function(k){
-    var s=sessions[k];
-    var exArr=[];Object.keys(s.ex).forEach(function(ek){exArr.push(s.ex[ek]);});
-    result.push({date:s.date,sl:s.sl,ex:exArr,ts:s.ts});
-  });
-  return result;
-}
+async function fetchHistory(){var url=getWh();if(!url)return;var sb=document.getElementById("syncBar");sb.className="sync-bar loading";sb.textContent="Syncing...";
+try{var r=await fetch(url);var d=await r.json();if(d.status==="ok"){if(d.history){cloudHist=groupHistory(d.history);buildLastKnown();applyLastKnown();}if(d.bodyWeights)bodyWts=d.bodyWeights;sb.className="sync-bar ok";}else{sb.className="sync-bar error";sb.textContent="Sync error";setTimeout(function(){sb.className="sync-bar ok";},3000);}}
+catch(e){sb.className="sync-bar error";sb.textContent="Offline - using cache";setTimeout(function(){sb.className="sync-bar ok";},3000);}}
+
+function groupHistory(rows){var sessions={};rows.forEach(function(r){var key=r.date+"|"+r.session+"|"+r.loggedAt;if(!sessions[key])sessions[key]={date:r.date,sl:r.session,ex:{},ts:r.loggedAt};var ek=r.exercise;if(!sessions[key].ex[ek])sessions[key].ex[ek]={n:ek,sets:[]};sessions[key].ex[ek].sets.push({set:r.set,reps:r.reps,w:r.weight,u:r.unit,c:r.completed});});
+var result=[];Object.keys(sessions).sort().forEach(function(k){var s=sessions[k];var exArr=[];Object.keys(s.ex).forEach(function(ek){exArr.push(s.ex[ek]);});result.push({date:s.date,sl:s.sl,ex:exArr,ts:s.ts});});return result;}
 
 function nxS(){if(!cloudHist.length)return 0;var last=cloudHist[cloudHist.length-1];for(var i=0;i<SS.length;i++)if(SS[i].label===last.sl)return(i+1)%SS.length;return 0;}
 function toast(m){var t=document.getElementById("toast");t.textContent=m;t.className="toast";setTimeout(function(){t.classList.add("show");},10);setTimeout(function(){t.classList.remove("show");},2800);}
@@ -229,9 +210,7 @@ function startRest(secs,name){if(secs<=0)return;clearInterval(restId);restTot=se
 function updRest(){var d=document.getElementById("restDigits"),f=document.getElementById("restFill");d.textContent=fmtT(restLeft);d.style.color=restLeft<=10&&restLeft>0?"#ef4444":"#fff";f.style.width=((restTot-restLeft)/restTot*100)+"%";f.style.background=SS[act].color;}
 function stopRest(){clearInterval(restId);restLeft=0;document.getElementById("restModal").className="modal modal-rest";}
 function startHold(name){clearInterval(holdId);holdEl=0;document.getElementById("holdEx").textContent=name;document.getElementById("holdModal").className="modal modal-hold on";updHold();holdId=setInterval(function(){holdEl++;updHold();},1000);}
-function updHold(){var d=document.getElementById("holdDigits"),f=document.getElementById("holdFill"),sub=document.getElementById("holdSub"),circ=document.getElementById("holdCircle"),lbl=document.getElementById("holdLabel");d.textContent=fmtT(holdEl);var pct=Math.min((holdEl/HOLD_TARGET)*100,100);f.style.width=pct+"%";
-  if(holdEl>=HOLD_TARGET){d.style.color="#4ade80";circ.style.borderColor="#14332a";f.style.background="#4ade80";document.getElementById("holdBarWrap").style.background="#14332a";sub.textContent="\u2713 Target reached";sub.style.color="#4ade80";lbl.style.color="#4ade80";}
-  else{d.style.color="#fff";circ.style.borderColor="#1e3a5a";f.style.background="#60a5fa";document.getElementById("holdBarWrap").style.background="#1e3a5a";sub.textContent="Target: "+HOLD_TARGET+"s";sub.style.color="#888";lbl.style.color="#60a5fa";}}
+function updHold(){var d=document.getElementById("holdDigits"),f=document.getElementById("holdFill"),sub=document.getElementById("holdSub"),circ=document.getElementById("holdCircle"),lbl=document.getElementById("holdLabel");d.textContent=fmtT(holdEl);var pct=Math.min((holdEl/HOLD_TARGET)*100,100);f.style.width=pct+"%";if(holdEl>=HOLD_TARGET){d.style.color="#4ade80";circ.style.borderColor="#14332a";f.style.background="#4ade80";document.getElementById("holdBarWrap").style.background="#14332a";sub.textContent="\u2713 Target reached";sub.style.color="#4ade80";lbl.style.color="#4ade80";}else{d.style.color="#fff";circ.style.borderColor="#1e3a5a";f.style.background="#60a5fa";document.getElementById("holdBarWrap").style.background="#1e3a5a";sub.textContent="Target: "+HOLD_TARGET+"s";sub.style.color="#888";lbl.style.color="#60a5fa";}}
 function stopHold(){clearInterval(holdId);document.getElementById("holdModal").className="modal modal-hold";}
 
 function exDC(ei){var ex=SS[act].exercises[ei],c=0;for(var s=0;s<ex.sets;s++)if(setD[act+"-"+ei+"-"+s])c++;return c;}
@@ -249,114 +228,104 @@ function rEx(){
   var s=SS[act],h="";
   for(var ei=0;ei<s.exercises.length;ei++){
     var ex=s.exercises[ei],fd=exFD(ei),dc=exDC(ei),hasW=ex.step>0,hasReps=ex.reps>0;
-    var bc="bdg-safe",bt="&#10003; BACK-SAFE";
-    if(ex.badge==="wu"){bc="bdg-wu";bt="WARMUP";}else if(ex.badge==="cd"){bc="bdg-cd";bt="COOLDOWN";}
+    var bc="bdg-safe",bt="&#10003; BACK-SAFE";if(ex.badge==="wu"){bc="bdg-wu";bt="WARMUP";}else if(ex.badge==="cd"){bc="bdg-cd";bt="COOLDOWN";}
+    var lk=lastKnown[ex.name];
     h+='<div class="ex'+(fd?" alldone":"")+'"><div class="enr"><span class="en">'+ex.name+'</span><span class="bdg '+bc+'">'+bt+'</span>';
     if(dc>0&&!fd)h+='<span class="sdone">'+dc+'/'+ex.sets+'</span>';
     h+='</div><div class="em"><span>'+ex.sets+(ex.sets===1?" set":" sets")+'</span>';
-    if(ex.repLabel)h+='<span class="dt">&middot;</span><span>'+ex.repLabel+'</span>';
-    else if(hasReps)h+='<span class="dt">&middot;</span><span>~'+ex.reps+' reps</span>';
+    if(ex.repLabel)h+='<span class="dt">&middot;</span><span>'+ex.repLabel+'</span>';else if(hasReps)h+='<span class="dt">&middot;</span><span>~'+ex.reps+' reps</span>';
     if(ex.rest>0)h+='<span class="dt">&middot;</span><span>Rest '+ex.rest+'s</span>';
     h+='</div><p class="eno">'+ex.notes+'</p>';
     for(var sti=0;sti<ex.sets;sti++){
-      var sk=act+"-"+ei+"-"+sti,isDn=!!setD[sk],w=wts[sk],rp=reps[sk];
-      h+='<div class="srow'+(isDn?" done":"")+'"><span class="slbl">Set '+(sti+1)+'</span>';
-      if(hasW){h+='<div class="wctrl"><button class="wbtn" onclick="aw('+act+','+ei+','+sti+',-1)">&minus;</button><span class="wval" id="wv-'+sk+'">'+w+'</span><button class="wbtn" onclick="aw('+act+','+ei+','+sti+',1)">+</button></div>';}
-      if(hasReps){h+='<div class="rctrl"><span class="rlbl">reps</span><button class="rbtn" onclick="ar('+act+','+ei+','+sti+',-1)">&minus;</button><span class="rval" id="rv-'+sk+'">'+rp+'</span><button class="rbtn" onclick="ar('+act+','+ei+','+sti+',1)">+</button></div>';}
-      if(!hasW&&!hasReps){h+='<span class="sreps">'+(ex.repLabel||"")+'</span>';}
-      if(!hasW&&hasReps&&!ex.step){h+='<span style="flex:1"></span>';}
+      var sk=act+"-"+ei+"-"+sti,isDn=!!setD[sk],w=wts[sk],rp=rps[sk];var lastDate=lk?lk.date:"";
+      h+='<div class="scard'+(isDn?" done":'"')+'"><div class="scard-top"><span class="slbl">Set '+(sti+1)+'</span>';
+      if(lastDate&&!isDn)h+='<span class="slast">last: '+lastDate+'</span>';
       h+='<button class="ck'+(isDn?" on":"")+'" onclick="tgSet('+act+','+ei+','+sti+')">'+(isDn?chk:"")+'</button></div>';
-    }
-    h+='</div>';
-  }
-  document.getElementById("exL").innerHTML=h;
-}
+      if(hasW){h+='<div class="srow-line"><span class="srow-label">Weight</span><button class="wbtn" onclick="aw('+act+','+ei+','+sti+',-1)">&minus;</button><span class="wval" id="wv-'+sk+'">'+w+' lbs</span><button class="wbtn" onclick="aw('+act+','+ei+','+sti+',1)">+</button></div>';}
+      if(hasReps){h+='<div class="srow-line"><span class="srow-label">Reps</span><button class="rbtn" onclick="ar('+act+','+ei+','+sti+',-1)">&minus;</button><span class="rval" id="rv-'+sk+'">'+rp+'</span><button class="rbtn" onclick="ar('+act+','+ei+','+sti+',1)">+</button></div>';}
+      if(!hasW&&!hasReps&&ex.repLabel)h+='<div class="sreps-only">'+ex.repLabel+'</div>';
+      h+='</div>';}h+='</div>';}
+  document.getElementById("exL").innerHTML=h;}
 
-function rStr(){
-  if(!strs[act])strs[act]=[1];
-  var list=strs[act];
-  var h='<div class="str-section"><div class="str-title"><span class="bdg bdg-cd">COOLDOWN</span><span style="font-size:16px;font-weight:600;color:#fff">Stretching</span></div>';
-  for(var i=0;i<list.length;i++){h+='<div class="str-row"><span class="str-name">Stretch '+(i+1)+'</span><button class="str-hold" onclick="startHold(\'Stretch '+(i+1)+'\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#60a5fa" stroke-width="2"/><line x1="12" y1="7" x2="12" y2="13" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="13" x2="16" y2="13" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/></svg>Hold</button><button class="str-x" onclick="rmStr('+i+')">&times;</button></div>';}
-  h+='<button class="str-add" onclick="addStr()">+ Add Stretch</button></div>';
-  document.getElementById("strSection").innerHTML=h;
-}
-
+function rStr(){if(!strs[act])strs[act]=[1];var list=strs[act];var h='<div class="str-section"><div class="str-title"><span class="bdg bdg-cd">COOLDOWN</span><span style="font-size:16px;font-weight:600;color:#fff">Stretching</span></div>';for(var i=0;i<list.length;i++){h+='<div class="str-row"><span class="str-name">Stretch '+(i+1)+'</span><button class="str-hold" onclick="startHold(\'Stretch '+(i+1)+'\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#60a5fa" stroke-width="2"/><line x1="12" y1="7" x2="12" y2="13" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="13" x2="16" y2="13" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/></svg>Hold</button><button class="str-x" onclick="rmStr('+i+')">&times;</button></div>';}h+='<button class="str-add" onclick="addStr()">+ Add Stretch</button></div>';document.getElementById("strSection").innerHTML=h;}
 function rPrg(){var s=SS[act],t=s.exercises.length,d=totED();document.getElementById("prg").innerHTML='<div class="prg-h"><span>Exercises Complete</span><span>'+d+'/'+t+'</span></div><div class="prg-t"><div class="prg-f" style="width:'+(d/t*100)+'%;background:'+s.color+'"></div></div>';}
-function rLog(){
-  var b=document.getElementById("lBtn"),s=SS[act],any=anyD();
-  var td=new Date().toISOString().substring(0,10),lgd=cloudHist.some(function(h){return h.date===td&&h.sl===s.label;});
-  if(lgd){b.className="lbtn lgd";b.textContent="\u2713 Logged today";b.onclick=null;}
-  else if(any){b.className="lbtn rdy";b.textContent="Log "+s.label;b.onclick=doLog;}
-  else{b.className="lbtn off";b.textContent="Complete sets to log";b.onclick=null;}
-}
+function rLog(){var b=document.getElementById("lBtn"),s=SS[act],any=anyD();var td=new Date().toISOString().substring(0,10),lgd=cloudHist.some(function(h){return h.date===td&&h.sl===s.label;});if(lgd){b.className="lbtn lgd";b.textContent="\u2713 Logged today";b.onclick=null;}else if(any){b.className="lbtn rdy";b.textContent="Log "+s.label;b.onclick=doLog;}else{b.className="lbtn off";b.textContent="Complete sets to log";b.onclick=null;}}
 
 function rHist(){
-  var el=document.getElementById("hWrap");
-  if(!cloudHist.length){el.innerHTML='<div class="hemp">No workouts logged yet.'+(getWh()?'':'<br>Set up Google Sheets sync in settings below.')+'</div>'+gSH();return;}
-  var h='<div class="stit">Recent Sessions</div>';
+  var el=document.getElementById("hWrap"),h="";
+  // Body Weight Section
+  h+=rBodyWeight();
+  if(!cloudHist.length){h+='<div class="hemp">No workouts logged yet.'+(getWh()?'':'<br>Set up Google Sheets sync below.')+'</div>'+gSH();el.innerHTML=h;var whI=document.getElementById("whIn");if(whI)whI.value=getWh();return;}
+  h+='<div class="stit">Recent Sessions</div>';
   var rec=cloudHist.slice(-15).reverse();
-  for(var r=0;r<rec.length;r++){var e=rec[r],color="#888";
-    for(var si=0;si<SS.length;si++)if(SS[si].label===e.sl){color=SS[si].color;break;}
+  for(var r=0;r<rec.length;r++){var e=rec[r],color="#888";for(var si=0;si<SS.length;si++)if(SS[si].label===e.sl){color=SS[si].color;break;}
     var ds="";try{ds=new Date(e.date+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});}catch(err){ds=e.date;}
     h+='<div class="hc"><div class="hch"><span class="hcd" style="color:'+color+'">'+e.sl+'</span><span class="hcdt">'+ds+'</span></div>';
-    for(var j=0;j<e.ex.length;j++){var x=e.ex[j];
-      var wStr=x.sets.map(function(s){return s.w>0?s.w+"":""}).filter(function(v){return v;}).join(" / ");
-      var rStr=x.sets.map(function(s){return s.reps;}).filter(function(v){return v&&v!=="-"&&v!=="0";}).join(" / ");
-      var display=[];if(wStr)display.push(wStr+" lbs");if(rStr)display.push(rStr+" reps");
-      h+='<div class="hce"><span>'+x.n+'</span><span class="hw">'+(display.length?display.join(" · "):"BW")+'</span></div>';}
-    h+='</div>';}
+    for(var j=0;j<e.ex.length;j++){var x=e.ex[j];var wStr=x.sets.map(function(s){return s.w>0?s.w+"":""}).filter(function(v){return v;}).join(" / ");var rStr2=x.sets.map(function(s){return s.reps;}).filter(function(v){return v&&v!=="-"&&v!=="0";}).join(" / ");var display=[];if(wStr)display.push(wStr+" lbs");if(rStr2)display.push(rStr2+" reps");h+='<div class="hce"><span>'+x.n+'</span><span class="hw">'+(display.length?display.join(" · "):"BW")+'</span></div>';}h+='</div>';}
   // Trends
   var exM={};cloudHist.forEach(function(ch){ch.ex.forEach(function(x){var mw=0;x.sets.forEach(function(s){if(s.w>mw)mw=s.w;});if(mw>0){if(!exM[x.n])exM[x.n]=[];exM[x.n].push(mw);}});});
   var tks=Object.keys(exM),hasT=false;for(var tk=0;tk<tks.length;tk++)if(exM[tks[tk]].length>=2){hasT=true;break;}
   if(hasT){h+='<div class="stit" style="margin-top:28px">Weight Trends</div>';for(var k=0;k<tks.length;k++){var nm=tks[k],en=exM[nm];if(en.length<2)continue;var f=en[0],l=en[en.length-1],df=l-f,cls=df>0?"up":df<0?"down":"same",sg=df>0?"+":"";h+='<div class="trow"><span class="tnm">'+nm+'</span><span class="tnu">'+f+' \u2192 '+l+' lbs</span><span class="tbdg '+cls+'">'+sg+df+'</span></div>';}}
-  // Week
-  var now=new Date(),ws=new Date(now);ws.setDate(now.getDate()-now.getDay());var wStr2=ws.toISOString().substring(0,10);
-  var wd={};cloudHist.forEach(function(ch){if(ch.date>=wStr2)wd[ch.date]=true;});var wc=Object.keys(wd).length;
+  var now=new Date(),ws=new Date(now);ws.setDate(now.getDate()-now.getDay());var wStr3=ws.toISOString().substring(0,10);var wd={};cloudHist.forEach(function(ch){if(ch.date>=wStr3)wd[ch.date]=true;});var wc=Object.keys(wd).length;
   h+='<div style="margin-top:24px;padding:18px;background:#171717;border:1px solid #2a2a2a;border-radius:12px;text-align:center"><div style="font-size:11px;color:#b0b0b0;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px">This Week</div><div style="font-size:32px;font-weight:700;color:#fff">'+wc+'</div><div style="font-size:14px;color:#d4d4d4;margin-top:4px">workout'+(wc!==1?"s":"")+" logged</div></div>";
-  h+=gSH();el.innerHTML=h;var whI=document.getElementById("whIn");if(whI)whI.value=getWh();
+  h+=gSH();el.innerHTML=h;var whI2=document.getElementById("whIn");if(whI2)whI2.value=getWh();}
+
+function rBodyWeight(){
+  var h='<div class="bw-section"><div class="bw-title">Body Weight</div><div class="bw-card">';
+  if(bodyWts.length>0){
+    var first=bodyWts[0],last=bodyWts[bodyWts.length-1];
+    var diff=Math.round((last.weight-first.weight)*10)/10;
+    var cls=diff<0?"bw-change-neg":diff>0?"bw-change-pos":"bw-change-zero";
+    var sign=diff>0?"+":"";
+    h+='<div class="bw-stats"><div class="bw-stat"><div class="bw-stat-label">Start</div><div class="bw-stat-val">'+first.weight+'</div><div class="bw-stat-sub">lbs</div></div>';
+    h+='<div class="bw-stat"><div class="bw-stat-label">Current</div><div class="bw-stat-val">'+last.weight+'</div><div class="bw-stat-sub">lbs</div></div>';
+    h+='<div class="bw-stat"><div class="bw-stat-label">Change</div><div class="bw-stat-val '+cls+'">'+sign+diff+'</div><div class="bw-stat-sub">lbs</div></div></div>';
+  } else {
+    h+='<div style="text-align:center;color:#888;font-size:13px;margin-bottom:12px">No weight logged yet</div>';
+  }
+  h+='<div class="bw-input-row"><input type="number" class="bw-input" id="bwInput" placeholder="Enter weight" step="0.1" inputmode="decimal"><button class="bw-log-btn" onclick="logWeight()">Log</button></div>';
+  h+='<div class="bw-msg" id="bwMsg"></div></div></div>';
+  return h;
 }
 
-function gSH(){return '<div class="stg"><div class="stg-t">Google Sheets Sync</div><p style="font-size:13px;color:#d4d4d4;margin-bottom:12px">Paste your Apps Script URL. This is your data source — history loads from here.</p><input class="tinp" id="whIn" placeholder="https://script.google.com/macros/s/..." value="'+getWh()+'"><div style="display:flex;gap:8px;margin-top:10px"><button class="sbtn" style="border:1px solid #4ade80;color:#4ade80" onclick="svWh()">Save &amp; Sync</button><button class="sbtn" style="border:1px solid #888;color:#888" onclick="tstWh()">Test</button></div><div class="stmsg" id="whSt"></div></div><div style="padding-top:14px"><button class="sbtn" style="border:1px solid #888;color:#888" onclick="expCSV()">Export CSV</button></div>';}
+async function logWeight(){
+  var input=document.getElementById("bwInput");var val=parseFloat(input.value);var msg=document.getElementById("bwMsg");
+  if(!val||val<50||val>500){msg.textContent="Enter a valid weight";msg.style.color="#ef4444";return;}
+  var td=new Date().toISOString().substring(0,10);var url=getWh();
+  if(!url){msg.textContent="Set up Google Sheets sync first";msg.style.color="#ef4444";return;}
+  msg.textContent="Logging...";msg.style.color="#b0b0b0";
+  try{
+    await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({type:"bodyweight",date:td,weight:val})});
+    // Update local
+    var existing=bodyWts.findIndex(function(b){return b.date===td;});
+    if(existing>=0){bodyWts[existing].weight=val;}else{bodyWts.push({date:td,weight:val});}
+    input.value="";msg.textContent="\u2713 "+val+" lbs logged";msg.style.color="#4ade80";
+    setTimeout(function(){msg.textContent="";R();},1500);
+  }catch(e){msg.textContent="Failed to sync";msg.style.color="#ef4444";}
+}
+
+function gSH(){return '<div class="stg"><div class="stg-t">Google Sheets Sync</div><p style="font-size:13px;color:#d4d4d4;margin-bottom:12px">Paste your Apps Script URL. History and weights load from here.</p><input class="tinp" id="whIn" placeholder="https://script.google.com/macros/s/..." value="'+getWh()+'"><div style="display:flex;gap:8px;margin-top:10px"><button class="sbtn" style="border:1px solid #4ade80;color:#4ade80" onclick="svWh()">Save &amp; Sync</button><button class="sbtn" style="border:1px solid #888;color:#888" onclick="tstWh()">Test</button></div><div class="stmsg" id="whSt"></div></div><div style="padding-top:14px"><button class="sbtn" style="border:1px solid #888;color:#888" onclick="expCSV()">Export CSV</button></div>';}
 
 function pk(i){act=i;svLocal();R();}
 function tgSet(si,ei,sti){var k=si+"-"+ei+"-"+sti;if(setD[k]){delete setD[k];}else{setD[k]=true;var ex=SS[si].exercises[ei];if(ex.rest>0&&sti<ex.sets-1)startRest(ex.rest,ex.name);}svLocal();R();}
-function aw(si,ei,sti,dir){var ex=SS[si].exercises[ei],k=si+"-"+ei+"-"+sti;var nv=wts[k]+(ex.step*dir);if(nv<ex.min)nv=ex.min;if(nv>ex.max)nv=ex.max;wts[k]=nv;var el=document.getElementById("wv-"+k);if(el)el.textContent=nv;svLocal();}
-function ar(si,ei,sti,dir){var k=si+"-"+ei+"-"+sti;var nv=reps[k]+dir;if(nv<0)nv=0;if(nv>99)nv=99;reps[k]=nv;var el=document.getElementById("rv-"+k);if(el)el.textContent=nv;svLocal();}
+function aw(si,ei,sti,dir){var ex=SS[si].exercises[ei],k=si+"-"+ei+"-"+sti;var nv=wts[k]+(2.5*dir);if(nv<ex.min)nv=ex.min;if(nv>ex.max)nv=ex.max;wts[k]=nv;var el=document.getElementById("wv-"+k);if(el)el.textContent=nv+" lbs";svLocal();}
+function ar(si,ei,sti,dir){var k=si+"-"+ei+"-"+sti;var nv=rps[k]+dir;if(nv<0)nv=0;if(nv>99)nv=99;rps[k]=nv;var el=document.getElementById("rv-"+k);if(el)el.textContent=nv;svLocal();}
 function addStr(){if(!strs[act])strs[act]=[];if(!scnt[act])scnt[act]=0;scnt[act]++;strs[act].push(scnt[act]);svLocal();rStr();}
 function rmStr(i){if(strs[act].length<=1)return;strs[act].splice(i,1);svLocal();rStr();}
 function tgNut(){document.getElementById("ngrd").classList.toggle("op");document.getElementById("narr").style.transform=document.getElementById("ngrd").classList.contains("op")?"rotate(180deg)":"none";}
 
-async function doLog(){
-  var s=SS[act],td=new Date().toISOString().substring(0,10);
-  var rows=[];
-  for(var i=0;i<s.exercises.length;i++){var ex=s.exercises[i];
-    for(var sti=0;sti<ex.sets;sti++){var sk=act+"-"+i+"-"+sti;
-      rows.push({date:td,day:s.label,exercise:ex.name,set:sti+1,reps:reps[sk]||ex.repLabel||"",weight:wts[sk]||0,unit:"lbs",completed:!!setD[sk]});}}
-  var strN=strs[act]?strs[act].length:0;
-  if(strN>0)rows.push({date:td,day:s.label,exercise:"Stretching",set:strN,reps:"-",weight:0,unit:"-",completed:true});
-  // Clear sets
-  s.exercises.forEach(function(ex,ei){for(var sti=0;sti<ex.sets;sti++)delete setD[act+"-"+ei+"-"+sti];});
-  strs[act]=[1];scnt[act]=1;
-  var nx=(act+1)%SS.length;act=nx;stopRest();stopHold();svLocal();
-  toast("Logging...");
-  // Send to Google Sheets
-  var url=getWh();
-  if(url){
-    try{await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({rows:rows})});
-      // Re-fetch history after short delay to let sheet update
-      setTimeout(async function(){await fetchHistory();R();toast("Logged! Next: "+SS[nx].label);},2000);
-    }catch(e){toast("Saved locally. Sync failed.");}
-  }else{toast("No sync URL set. Go to History > Settings.");}
-  R();
-}
+async function doLog(){var s=SS[act],td=new Date().toISOString().substring(0,10);var rows=[];
+for(var i=0;i<s.exercises.length;i++){var ex=s.exercises[i];for(var sti=0;sti<ex.sets;sti++){var sk=act+"-"+i+"-"+sti;rows.push({date:td,day:s.label,exercise:ex.name,set:sti+1,reps:rps[sk]||ex.repLabel||"",weight:wts[sk]||0,unit:"lbs",completed:!!setD[sk]});}}
+var strN=strs[act]?strs[act].length:0;if(strN>0)rows.push({date:td,day:s.label,exercise:"Stretching",set:strN,reps:"-",weight:0,unit:"-",completed:true});
+s.exercises.forEach(function(ex,ei){for(var sti=0;sti<ex.sets;sti++)delete setD[act+"-"+ei+"-"+sti];});strs[act]=[1];scnt[act]=1;
+var nx=(act+1)%SS.length;act=nx;stopRest();stopHold();svLocal();toast("Logging...");
+var url=getWh();if(url){try{await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({rows:rows})});setTimeout(async function(){await fetchHistory();R();toast("Logged! Next: "+SS[nx].label);},2000);}catch(e){toast("Saved locally. Sync failed.");}}else{toast("No sync URL. Go to History > Settings.");}R();}
 
-function svWh(){var u=(document.getElementById("whIn")||{}).value||"";setWh(u);var s=document.getElementById("whSt");s.textContent="Saving & syncing...";s.style.color="#b0b0b0";fetchHistory().then(function(){s.textContent=u?"\u2713 Synced":"URL cleared";s.style.color="#4ade80";R();setTimeout(function(){s.textContent="";},2000);});}
+function svWh(){var u=(document.getElementById("whIn")||{}).value||"";setWhUrl(u);var s=document.getElementById("whSt");s.textContent="Saving & syncing...";s.style.color="#b0b0b0";fetchHistory().then(function(){s.textContent=u?"\u2713 Synced":"URL cleared";s.style.color="#4ade80";R();setTimeout(function(){s.textContent="";},2000);});}
 function tstWh(){var u=(document.getElementById("whIn")||{}).value||"",s=document.getElementById("whSt");if(!u){s.textContent="\u2717 Enter URL";s.style.color="#ef4444";return;}s.textContent="Testing...";s.style.color="#b0b0b0";fetch(u,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({rows:[{date:"TEST",day:"Test",exercise:"Test",set:1,reps:"0",weight:0,unit:"-",completed:true}]})}).then(function(){s.textContent="\u2713 Sent";s.style.color="#4ade80";}).catch(function(){s.textContent="\u2717 Failed";s.style.color="#ef4444";});setTimeout(function(){s.textContent="";},3000);}
 function expCSV(){if(!cloudHist.length){toast("No history");return;}var csv="Date,Session,Exercise,Set,Reps,Weight,Completed\n";cloudHist.forEach(function(h){h.ex.forEach(function(x){x.sets.forEach(function(s){csv+=h.date+',"'+h.sl+'","'+x.n+'",'+s.set+','+s.reps+','+s.w+','+s.c+"\n";});});});var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="workout.csv";a.click();toast("CSV downloaded");}
 
-// INIT
-ldLocal();initWR();R();
-fetchHistory().then(function(){R();});
+ldLocal();initWR();R();fetchHistory().then(function(){R();});
 </script>
 </body>
 </html>
